@@ -1,6 +1,6 @@
 namespace ComfyUIHelper.Models
 {
-    public class WorkflowSchema
+    public class UpscaleImageSchema
     {
         // Loader / Encode 系（固有のプロパティ名を持つもの）
         public readonly static ComfyUiParameter LoadCheckPoint = new ("Api_LoadCheckPoint", "ckpt_name");
