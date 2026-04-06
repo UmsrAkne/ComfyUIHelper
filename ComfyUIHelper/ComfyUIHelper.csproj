@@ -13,4 +13,11 @@
           <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>
+    <ItemGroup>
+      <Page Update="Controls\CustomTextBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
 </Project>

@@ -1,0 +1,40 @@
+<UserControl
+    x:Class="ComfyUIHelper.Controls.CustomTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Padding="4"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Margin="0,0,0,5"
+            FontSize="{StaticResource CommonFontSize}"
+            Foreground="{StaticResource CommonForegroundBrush}"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Header}" />
+
+        <Border
+            Grid.Row="1"
+            Background="{StaticResource MiddleBackgroundBrush}"
+            CornerRadius="{StaticResource CommonCornerRadius}">
+
+            <TextBox
+                Padding="2"
+                AcceptsReturn="True"
+                FontSize="{StaticResource CommonFontSize}"
+                Foreground="{StaticResource CommonForegroundBrush}"
+                Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Text}"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Visible" />
+        </Border>
+    </Grid>
+</UserControl>

@@ -12,7 +12,5 @@
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
-    </Grid>
+    <Grid Background="{StaticResource DarkBackgroundBrush}" />
 </Window>
