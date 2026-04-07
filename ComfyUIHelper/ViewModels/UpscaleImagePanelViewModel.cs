@@ -1,4 +1,5 @@
 using ComfyUIHelper.Models;
+using ComfyUIHelper.Utils;
 using Prism.Mvvm;
 
 namespace ComfyUIHelper.ViewModels
@@ -65,6 +66,12 @@ namespace ComfyUIHelper.ViewModels
 
         public string Header { get; set; } = "Upscale Image";
 
-        public string ModelDirectoryPath { get; set; } = string.Empty;
+        public string ModelDirectoryPath { get; set; } = PathHelper.GetModelDirectoryPath();
+
+        public string LoraDirectoryPath { get; set; } = PathHelper.GetLoraDirectoryPath();
+
+        public string UpscalerDirectoryPath { get; set; } = PathHelper.GetUpscalerDirectoryPath();
+
+        public string VaeDirectoryPath { get; set; } = PathHelper.GetVaeDirectoryPath();
     }
 }
