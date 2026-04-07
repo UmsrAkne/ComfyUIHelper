@@ -2,6 +2,7 @@
     x:Class="ComfyUIHelper.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:ComfyUIHelper.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
@@ -12,7 +13,27 @@
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
-    <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+
+    <Window.Resources>
+        <!-- 専用パネルが増えたらここに追加していく -->
+        <DataTemplate DataType="{x:Type viewModels:UpscaleImagePanelViewModel}">
+            <controls:UpscaleImagePanel />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource DarkBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Workflow1">
+                <ScrollViewer>
+                    <ContentControl Content="{Binding CurrentWorkFlow}" />
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>

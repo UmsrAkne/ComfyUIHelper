@@ -5,10 +5,19 @@
         <UseWPF>true</UseWPF>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
+        <PackageReference Include="MaterialDesignThemes.Wpf" Version="1.0.1" />
         <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
           <PrivateAssets>all</PrivateAssets>
         </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Page Update="Controls\CustomTextBox.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
     </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
-﻿using Prism.Ioc;
+﻿using System.Windows;
+using ComfyUIHelper.Utils;
 using ComfyUIHelper.Views;
-using System.Windows;
+using Prism.Ioc;
 
 namespace ComfyUIHelper
 {
@@ -16,6 +17,7 @@ namespace ComfyUIHelper
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            Logger.Initialize(System.AppContext.BaseDirectory);
         }
     }
 }
