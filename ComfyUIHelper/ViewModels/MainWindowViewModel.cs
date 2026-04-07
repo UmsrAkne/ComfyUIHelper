@@ -15,6 +15,8 @@ public class MainWindowViewModel : BindableBase
 
     public string Title => appVersionInfo.Title;
 
+    public IWorkflowPanel CurrentWorkFlow { get; } = new UpscaleImagePanelViewModel();
+
     [Conditional("DEBUG")]
     private void SetupDummyData()
     {

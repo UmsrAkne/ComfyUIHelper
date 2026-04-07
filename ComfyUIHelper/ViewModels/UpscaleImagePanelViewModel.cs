@@ -4,7 +4,7 @@ using Prism.Mvvm;
 namespace ComfyUIHelper.ViewModels
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    public class UpscaleImagePanelViewModel : BindableBase
+    public class UpscaleImagePanelViewModel : BindableBase, IWorkflowPanel
     {
         private string loadCheckPoint = string.Empty;
         private string loadImage = string.Empty;
@@ -62,5 +62,7 @@ namespace ComfyUIHelper.ViewModels
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.Denoise))]
         public double Denoise { get => denoise; set => SetProperty(ref denoise, value); }
+
+        public string Header { get; set; } = "Upscale Image";
     }
 }
