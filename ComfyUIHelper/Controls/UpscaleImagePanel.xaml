@@ -7,13 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:ComfyUIHelper.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:UpscaleImagePanelViewModel}"
-    d:DesignHeight="400"
     d:DesignWidth="800"
     Background="{StaticResource DarkBackgroundBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -23,30 +22,96 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <local:CustomTextBox
+        <StackPanel
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Header="Positive Prompt"
-            Text="{Binding PositivePrompt, UpdateSourceTrigger=PropertyChanged}" />
+            Grid.ColumnSpan="2">
 
-        <local:CustomTextBox
+            <StackPanel Orientation="Horizontal">
+                <!-- Checkpoint -->
+                <local:FileSuggestBox />
+
+                <!-- vae -->
+                <local:FileSuggestBox Margin="15,0" />
+
+                <!-- upscaler -->
+                <local:FileSuggestBox />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <!-- lora1 -->
+                <local:FileSuggestBox />
+
+                <!-- lora2 -->
+                <local:FileSuggestBox Margin="15,0" />
+
+                <!-- lora3 -->
+                <local:FileSuggestBox />
+            </StackPanel>
+        </StackPanel>
+
+        <Grid
             Grid.Row="1"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Height="120"
-            Header="Negative Prompt"
-            Text="{Binding NegativePrompt, UpdateSourceTrigger=PropertyChanged}" />
+            Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        <StackPanel
-            Grid.Row="2"
-            Grid.Column="0"
-            Orientation="Horizontal">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <local:CustomTextBox
+                Grid.Row="0"
+                Grid.Column="0"
+                Height="200"
+                Header="Positive Prompt"
+                Text="{Binding PositivePrompt, UpdateSourceTrigger=PropertyChanged}" />
+
+            <local:CustomTextBox
+                Grid.Row="1"
+                Grid.Column="0"
+                Height="120"
+                Header="Negative Prompt"
+                Text="{Binding NegativePrompt, UpdateSourceTrigger=PropertyChanged}" />
+
+            <!-- image drop area -->
+            <Border
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                MinWidth="300" />
+        </Grid>
+
+        <StackPanel Grid.Row="2" Grid.Column="0">
             <local:LabeledNumericInput
                 VerticalAlignment="Top"
                 Label="Denoise"
                 Steps="1"
                 Value="{Binding Denoise, UpdateSourceTrigger=PropertyChanged}" />
+
+            <local:LabeledNumericInput
+                VerticalAlignment="Top"
+                Label="Seed"
+                Steps="1"
+                Value="{Binding Seed, UpdateSourceTrigger=PropertyChanged}" />
+
+            <local:LabeledNumericInput
+                VerticalAlignment="Top"
+                Label="Issue Number"
+                Steps="1"
+                Value="{Binding IssueNumber, UpdateSourceTrigger=PropertyChanged}" />
+
+            <local:LabeledNumericInput
+                VerticalAlignment="Top"
+                Label="UpScaleBy"
+                Steps="1"
+                Value="{Binding UpScaleBy, UpdateSourceTrigger=PropertyChanged}" />
+
+            <local:CustomTextBox Header="File name prefix" Text="{Binding FileNamePrefix, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
     </Grid>

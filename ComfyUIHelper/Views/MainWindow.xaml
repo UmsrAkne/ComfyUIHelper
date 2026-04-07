@@ -21,7 +21,9 @@
 
         <TabControl Grid.Row="1">
             <TabItem Header="Workflow1">
-                <controls:UpscaleImagePanel />
+                <ScrollViewer>
+                    <controls:UpscaleImagePanel />
+                </ScrollViewer>
             </TabItem>
         </TabControl>
 
