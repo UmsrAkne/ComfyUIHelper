@@ -1,4 +1,7 @@
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using ComfyUIHelper.Utils;
 using Prism.Mvvm;
 
@@ -44,7 +47,21 @@ namespace ComfyUIHelper.ViewModels
         public string SelectedFile
         {
             get => selectedFile;
-            set => SetProperty(ref selectedFile, value);
+            set
+            {
+                if (SetProperty(ref selectedFile, value))
+                {
+                    // アイテムが選択されたら、それを検索テキストに反映
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        // セッターの中で SearchText を更新することで、TextBox に値が入る
+                        SearchText = value;
+
+                        // 選択直後にポップアップを閉じる
+                        IsSuggestionOpen = false;
+                    }
+                }
+            }
         }
 
         public string SourceDirectoryPath
@@ -55,13 +72,33 @@ namespace ComfyUIHelper.ViewModels
 
         private void UpdateSuggestions(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
+            Suggestions.Clear();
+
+            if (string.IsNullOrWhiteSpace(value) || !Directory.Exists(SourceDirectoryPath))
             {
+                IsSuggestionOpen = false;
                 return;
             }
 
-            // Todo: sourceDirectoryPathからファイルを検索してsuggestionsにセットする
-            Logger.Log("UpdateSuggestionsAsync");
+            try
+            {
+                // ディレクトリ内を検索
+                var filteredFiles = Directory.EnumerateFiles(SourceDirectoryPath, $"*{value}*", SearchOption.TopDirectoryOnly)
+                    .Select(Path.GetFileName)
+                    .Take(10); // 出すぎると邪魔なので上位10件くらいに絞る
+
+                foreach (var file in filteredFiles)
+                {
+                    Suggestions.Add(file);
+                }
+
+                // 候補が空ならポップアップを閉じる
+                IsSuggestionOpen = Suggestions.Any();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"ファイル検索中にエラー: {ex.Message}");
+            }
         }
     }
 }
