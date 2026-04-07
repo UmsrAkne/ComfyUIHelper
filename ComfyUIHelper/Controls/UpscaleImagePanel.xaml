@@ -29,7 +29,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <!-- Checkpoint -->
-                <local:FileSuggestBox />
+                <local:FileSuggestBox SelectedPath="{Binding LoadCheckPoint}" SourceDirectoryPath="{Binding ModelDirectoryPath}" />
 
                 <!-- vae -->
                 <local:FileSuggestBox Margin="15,0" />

@@ -12,6 +12,7 @@ namespace ComfyUIHelper.ViewModels
         private ObservableCollection<string> suggestions = new ();
         private string selectedFile;
         private readonly string sourceDirectoryPath;
+        private string sourceDirectoryPath1;
 
         public FileSuggestBoxViewModel(string sourceDirectoryPath)
         {
@@ -44,6 +45,12 @@ namespace ComfyUIHelper.ViewModels
         {
             get => selectedFile;
             set => SetProperty(ref selectedFile, value);
+        }
+
+        public string SourceDirectoryPath
+        {
+            get => sourceDirectoryPath1;
+            set => SetProperty(ref sourceDirectoryPath1, value);
         }
 
         private void UpdateSuggestions(string value)

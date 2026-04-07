@@ -10,7 +10,7 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Grid>
+    <Grid x:Name="InternalRoot">
         <TextBox
             x:Name="SearchBox"
             Width="200"

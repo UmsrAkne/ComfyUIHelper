@@ -64,5 +64,7 @@ namespace ComfyUIHelper.ViewModels
         public double Denoise { get => denoise; set => SetProperty(ref denoise, value); }
 
         public string Header { get; set; } = "Upscale Image";
+
+        public string ModelDirectoryPath { get; set; } = string.Empty;
     }
 }
