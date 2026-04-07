@@ -13,10 +13,12 @@
             Margin="10,0"
             VerticalAlignment="Center"
             FontSize="{StaticResource CommonFontSize}"
+            Foreground="{StaticResource CommonForegroundBrush}"
             Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Label}" />
 
         <md:NumericUpDown
             FontSize="{StaticResource CommonFontSize}"
+            Foreground="{StaticResource CommonForegroundBrush}"
             ValueStep="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Steps}"
             Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Value}">
             <md:NumericUpDown.LayoutTransform>
