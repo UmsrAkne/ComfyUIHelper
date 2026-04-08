@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:ComfyUIHelper.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:UpscaleImagePanelViewModel}"
-    d:DesignWidth="800"
+    d:DesignWidth="1200"
     Background="{StaticResource DarkBackgroundBrush}"
     mc:Ignorable="d">
     <Grid>
@@ -94,7 +94,6 @@
             <local:CustomTextBox
                 Grid.Row="1"
                 Grid.Column="0"
-                Height="120"
                 Header="Negative Prompt"
                 Text="{Binding NegativePrompt, UpdateSourceTrigger=PropertyChanged}" />
 

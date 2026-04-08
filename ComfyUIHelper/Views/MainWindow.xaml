@@ -8,9 +8,10 @@
     xmlns:prism="http://prismlibrary.com/"
     xmlns:viewModels="clr-namespace:ComfyUIHelper.ViewModels"
     Title="{Binding Title}"
-    Width="525"
-    Height="350"
+    Width="1200"
+    Height="720"
     d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
+    d:DesignWidth="1200"
     prism:ViewModelLocator.AutoWireViewModel="True"
     mc:Ignorable="d">
 
