@@ -15,17 +15,25 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock
+        <Border
             Grid.Row="0"
-            Margin="0,0,0,5"
-            FontSize="{StaticResource CommonFontSize}"
-            Foreground="{StaticResource CommonForegroundBrush}"
-            Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Header}" />
+            HorizontalAlignment="Left"
+            Background="{StaticResource MiddleBackgroundBrush}"
+            CornerRadius="5,5,0,0"
+            Opacity="0.7">
+
+            <TextBlock
+                Margin="10,0"
+                Padding="2"
+                FontSize="{StaticResource CommonFontSize}"
+                Foreground="{StaticResource CommonForegroundBrush}"
+                Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Header}" />
+        </Border>
 
         <Border
             Grid.Row="1"
             Background="{StaticResource MiddleBackgroundBrush}"
-            CornerRadius="{StaticResource CommonCornerRadius}">
+            CornerRadius="0,5,5,5">
 
             <TextBox
                 Padding="2"
