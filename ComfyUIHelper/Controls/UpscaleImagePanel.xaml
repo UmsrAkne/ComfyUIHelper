@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:ComfyUIHelper.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:UpscaleImagePanelViewModel}"
-    d:DesignWidth="800"
+    d:DesignWidth="1200"
     Background="{StaticResource DarkBackgroundBrush}"
     mc:Ignorable="d">
     <Grid>
@@ -29,24 +29,44 @@
 
             <StackPanel Orientation="Horizontal">
                 <!-- Checkpoint -->
-                <local:FileSuggestBox />
+                <local:FileSuggestBox
+                    Label="Chkpt: "
+                    SelectedPath="{Binding LoadCheckPoint}"
+                    SourceDirectoryPath="{Binding ModelDirectoryPath}" />
 
                 <!-- vae -->
-                <local:FileSuggestBox Margin="15,0" />
+                <local:FileSuggestBox
+                    Margin="35,0"
+                    Label="Vae: "
+                    SelectedPath="{Binding LoadVae}"
+                    SourceDirectoryPath="{Binding VaeDirectoryPath}" />
 
                 <!-- upscaler -->
-                <local:FileSuggestBox />
+                <local:FileSuggestBox
+                    Label="Upscaler: "
+                    SelectedPath="{Binding LoadUpScaleModel}"
+                    SourceDirectoryPath="{Binding UpscalerDirectoryPath}" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <!-- lora1 -->
-                <local:FileSuggestBox />
+                <local:FileSuggestBox
+                    Label="Lora1: "
+                    SelectedPath="{Binding LoadLora1}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
                 <!-- lora2 -->
-                <local:FileSuggestBox Margin="15,0" />
+                <local:FileSuggestBox
+                    Margin="35,0"
+                    Label="Lora2: "
+                    SelectedPath="{Binding LoadLora2}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
                 <!-- lora3 -->
-                <local:FileSuggestBox />
+                <local:FileSuggestBox
+                    Label="Lora3: "
+                    SelectedPath="{Binding LoadLora3}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
             </StackPanel>
         </StackPanel>
 
@@ -74,7 +94,6 @@
             <local:CustomTextBox
                 Grid.Row="1"
                 Grid.Column="0"
-                Height="120"
                 Header="Negative Prompt"
                 Text="{Binding NegativePrompt, UpdateSourceTrigger=PropertyChanged}" />
 
