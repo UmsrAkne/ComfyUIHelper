@@ -29,30 +29,44 @@
 
             <StackPanel Orientation="Horizontal">
                 <!-- Checkpoint -->
-                <local:FileSuggestBox SelectedPath="{Binding LoadCheckPoint}" SourceDirectoryPath="{Binding ModelDirectoryPath}" />
+                <local:FileSuggestBox
+                    Label="Chkpt: "
+                    SelectedPath="{Binding LoadCheckPoint}"
+                    SourceDirectoryPath="{Binding ModelDirectoryPath}" />
 
                 <!-- vae -->
                 <local:FileSuggestBox
-                    Margin="15,0"
+                    Margin="35,0"
+                    Label="Vae: "
                     SelectedPath="{Binding LoadVae}"
                     SourceDirectoryPath="{Binding VaeDirectoryPath}" />
 
                 <!-- upscaler -->
-                <local:FileSuggestBox SelectedPath="{Binding LoadUpScaleModel}" SourceDirectoryPath="{Binding UpscalerDirectoryPath}" />
+                <local:FileSuggestBox
+                    Label="Upscaler: "
+                    SelectedPath="{Binding LoadUpScaleModel}"
+                    SourceDirectoryPath="{Binding UpscalerDirectoryPath}" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <!-- lora1 -->
-                <local:FileSuggestBox SelectedPath="{Binding LoadLora1}" SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+                <local:FileSuggestBox
+                    Label="Lora1: "
+                    SelectedPath="{Binding LoadLora1}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
                 <!-- lora2 -->
                 <local:FileSuggestBox
-                    Margin="15,0"
+                    Margin="35,0"
+                    Label="Lora2: "
                     SelectedPath="{Binding LoadLora2}"
                     SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
                 <!-- lora3 -->
-                <local:FileSuggestBox SelectedPath="{Binding LoadLora3}" SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+                <local:FileSuggestBox
+                    Label="Lora3: "
+                    SelectedPath="{Binding LoadLora3}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
             </StackPanel>
         </StackPanel>
 

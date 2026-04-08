@@ -23,6 +23,13 @@ namespace ComfyUIHelper.Controls
                 typeof(FileSuggestBox),
                 new PropertyMetadata(string.Empty, OnSourceDirectoryPathChanged));
 
+        public readonly static DependencyProperty LabelProperty =
+            DependencyProperty.Register(
+                nameof(Label),
+                typeof(string),
+                typeof(FileSuggestBox),
+                new PropertyMetadata(string.Empty));
+
         public FileSuggestBox()
         {
             InitializeComponent();
@@ -39,6 +46,8 @@ namespace ComfyUIHelper.Controls
                 }
             };
         }
+
+        public string Label { get => (string)GetValue(LabelProperty); set => SetValue(LabelProperty, value); }
 
         public string SelectedPath
         {
