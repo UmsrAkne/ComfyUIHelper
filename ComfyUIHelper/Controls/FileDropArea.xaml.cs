@@ -18,6 +18,13 @@ namespace ComfyUIHelper.Controls
                 typeof(DataTemplate),
                 typeof(FileDropArea));
 
+        public readonly static DependencyProperty PlaceholderTextProperty =
+            DependencyProperty.Register(
+                nameof(PlaceholderText),
+                typeof(string),
+                typeof(FileDropArea),
+                new PropertyMetadata(string.Empty));
+
         public FileDropArea()
         {
             InitializeComponent();
@@ -30,6 +37,8 @@ namespace ComfyUIHelper.Controls
             get => (DataTemplate)GetValue(FileTemplateProperty);
             set => SetValue(FileTemplateProperty, value);
         }
+
+        public string PlaceholderText { get => (string)GetValue(PlaceholderTextProperty); set => SetValue(PlaceholderTextProperty, value); }
 
         private void OnDragOver(object sender, DragEventArgs e)
         {

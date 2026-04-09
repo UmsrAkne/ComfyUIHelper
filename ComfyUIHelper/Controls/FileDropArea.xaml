@@ -24,7 +24,7 @@
                     HorizontalAlignment="Center"
                     FontSize="{StaticResource CommonFontSize}"
                     Foreground="{StaticResource CommonForegroundBrush}"
-                    Text="FIle drop here.">
+                    Text="{Binding PlaceholderText, ElementName=Parent}">
                     <TextBlock.Style>
 
                         <Style TargetType="TextBlock">
