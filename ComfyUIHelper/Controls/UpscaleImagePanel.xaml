@@ -88,7 +88,7 @@
             Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -99,22 +99,39 @@
             <local:CustomTextBox
                 Grid.Row="0"
                 Grid.Column="0"
-                Height="200"
                 Header="Positive Prompt"
                 Text="{Binding PositivePrompt, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:CustomTextBox
                 Grid.Row="1"
                 Grid.Column="0"
+                Height="90"
                 Header="Negative Prompt"
                 Text="{Binding NegativePrompt, UpdateSourceTrigger=PropertyChanged}" />
 
             <!-- image drop area -->
-            <Border
+            <local:FileDropArea
                 Grid.Row="0"
                 Grid.RowSpan="2"
                 Grid.Column="1"
-                MinWidth="300" />
+                MinWidth="300"
+                FilePath="{Binding CurrentImagePath}">
+                <local:FileDropArea.FileTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image
+                                MaxWidth="400"
+                                MaxHeight="300"
+                                Source="{Binding}" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="{StaticResource CommonFontSize}"
+                                Foreground="{StaticResource CommonForegroundBrush}"
+                                Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </local:FileDropArea.FileTemplate>
+            </local:FileDropArea>
         </Grid>
 
         <StackPanel Grid.Row="2" Grid.Column="0">

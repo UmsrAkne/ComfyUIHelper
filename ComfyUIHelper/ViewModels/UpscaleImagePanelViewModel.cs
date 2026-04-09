@@ -73,6 +73,8 @@ namespace ComfyUIHelper.ViewModels
             set => SetProperty(ref currentWorkflowPath, value);
         }
 
+        public string CurrentImagePath { get; set; } = string.Empty;
+
         public string ModelDirectoryPath { get; set; } = PathHelper.GetModelDirectoryPath();
 
         public string LoraDirectoryPath { get; set; } = PathHelper.GetLoraDirectoryPath();
