@@ -21,6 +21,7 @@ namespace ComfyUIHelper.ViewModels
         private string fileNamePrefix = string.Empty;
         private double upScaleBy = 1.0;
         private double denoise = 0.6;
+        private string currentWorkflowPath = string.Empty;
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadCheckPoint))]
         public string LoadCheckPoint { get => loadCheckPoint; set => SetProperty(ref loadCheckPoint, value); }
@@ -65,6 +66,14 @@ namespace ComfyUIHelper.ViewModels
         public double Denoise { get => denoise; set => SetProperty(ref denoise, value); }
 
         public string Header { get; set; } = "Upscale Image";
+
+        public string CurrentWorkflowPath
+        {
+            get => currentWorkflowPath;
+            set => SetProperty(ref currentWorkflowPath, value);
+        }
+
+        public string CurrentImagePath { get; set; } = string.Empty;
 
         public string ModelDirectoryPath { get; set; } = PathHelper.GetModelDirectoryPath();
 

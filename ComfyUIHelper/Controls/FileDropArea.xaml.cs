@@ -1,0 +1,66 @@
+using System.Windows;
+using System.Windows.Controls;
+
+namespace ComfyUIHelper.Controls
+{
+    public partial class FileDropArea : UserControl
+    {
+        public readonly static DependencyProperty FilePathProperty =
+            DependencyProperty.Register(
+                nameof(FilePath),
+                typeof(string),
+                typeof(FileDropArea),
+                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+        public readonly static DependencyProperty FileTemplateProperty =
+            DependencyProperty.Register(
+                nameof(FileTemplate),
+                typeof(DataTemplate),
+                typeof(FileDropArea));
+
+        public readonly static DependencyProperty PlaceholderTextProperty =
+            DependencyProperty.Register(
+                nameof(PlaceholderText),
+                typeof(string),
+                typeof(FileDropArea),
+                new PropertyMetadata(string.Empty));
+
+        public FileDropArea()
+        {
+            InitializeComponent();
+        }
+
+        public string FilePath { get => (string)GetValue(FilePathProperty); set => SetValue(FilePathProperty, value); }
+
+        public DataTemplate FileTemplate
+        {
+            get => (DataTemplate)GetValue(FileTemplateProperty);
+            set => SetValue(FileTemplateProperty, value);
+        }
+
+        public string PlaceholderText { get => (string)GetValue(PlaceholderTextProperty); set => SetValue(PlaceholderTextProperty, value); }
+
+        private void OnDragOver(object sender, DragEventArgs e)
+        {
+            e.Effects = e.Data.GetDataPresent(DataFormats.FileDrop)
+                ? DragDropEffects.Copy
+                : DragDropEffects.None;
+
+            e.Handled = true;
+        }
+
+        private void OnDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files is { Length: > 0, })
+                {
+                    FilePath = files[0];
+                }
+            }
+
+            e.Handled = true;
+        }
+    }
+}
