@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ComfyUIHelper.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:ComfyUIHelper.ViewModels"
     d:DataContext="{d:DesignInstance viewModels:UpscaleImagePanelViewModel}"
     d:DesignWidth="1200"
@@ -26,6 +27,17 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2">
+
+            <local:FileDropArea Margin="10,2" FilePath="{Binding CurrentWorkflowPath}">
+                <local:FileDropArea.FileTemplate>
+                    <DataTemplate DataType="{x:Type system:String}">
+                        <TextBlock
+                            FontSize="{StaticResource CommonFontSize}"
+                            Foreground="{StaticResource CommonForegroundBrush}"
+                            Text="{Binding}" />
+                    </DataTemplate>
+                </local:FileDropArea.FileTemplate>
+            </local:FileDropArea>
 
             <StackPanel Orientation="Horizontal">
                 <!-- Checkpoint -->

@@ -24,7 +24,20 @@
                     HorizontalAlignment="Center"
                     FontSize="{StaticResource CommonFontSize}"
                     Foreground="{StaticResource CommonForegroundBrush}"
-                    Text="FIle drop here." />
+                    Text="FIle drop here.">
+                    <TextBlock.Style>
+
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding FilePath, ElementName=Parent}" Value="">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+
+                </TextBlock>
 
                 <Border AllowDrop="True" BorderThickness="2">
                     <ContentControl Content="{Binding FilePath, ElementName=Parent}" ContentTemplate="{Binding FileTemplate, ElementName=Parent}" />
