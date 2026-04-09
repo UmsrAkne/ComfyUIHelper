@@ -12,12 +12,24 @@ namespace ComfyUIHelper.Controls
                 typeof(FileDropArea),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
+        public readonly static DependencyProperty FileTemplateProperty =
+            DependencyProperty.Register(
+                nameof(FileTemplate),
+                typeof(DataTemplate),
+                typeof(FileDropArea));
+
         public FileDropArea()
         {
             InitializeComponent();
         }
 
         public string FilePath { get => (string)GetValue(FilePathProperty); set => SetValue(FilePathProperty, value); }
+
+        public DataTemplate FileTemplate
+        {
+            get => (DataTemplate)GetValue(FileTemplateProperty);
+            set => SetValue(FileTemplateProperty, value);
+        }
 
         private void OnDragOver(object sender, DragEventArgs e)
         {
