@@ -1,3 +1,4 @@
+using System.Text.Json.Nodes;
 using ComfyUIHelper.Utils;
 
 namespace ComfyUIHelper.Core
@@ -18,17 +19,17 @@ namespace ComfyUIHelper.Core
         /// <summary>
         /// API用のWorkflow JSONファイルを読み込みます
         /// </summary>
-        public static JsonElement LoadPromptJson(string path)
+        public static JsonNode LoadPromptJson(string path)
         {
             var jsonString = File.ReadAllText(path);
             Logger.Log("workflow読み込み完了");
-            return JsonSerializer.Deserialize<JsonElement>(jsonString);
+            return JsonNode.Parse(jsonString);
         }
 
         /// <summary>
         /// WorkflowをComfyUIの /prompt エンドポイントに送信します
         /// </summary>
-        public static async Task<string> ComfyUiApiPrompt(JsonElement promptData)
+        public static async Task<string> ComfyUiApiPrompt(JsonNode promptData)
         {
             // 送信用データ構造の作成
             var payloadObj = new

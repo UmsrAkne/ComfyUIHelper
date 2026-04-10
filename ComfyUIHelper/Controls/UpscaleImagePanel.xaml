@@ -126,12 +126,14 @@
                             <Image
                                 MaxWidth="400"
                                 MaxHeight="300"
-                                Source="{Binding}" />
+                                Source="{Binding Converter={StaticResource ImagePathToBitmapSourceConverter}}" />
                             <TextBlock
+                                MaxWidth="350"
                                 HorizontalAlignment="Center"
                                 FontSize="{StaticResource CommonFontSize}"
                                 Foreground="{StaticResource CommonForegroundBrush}"
-                                Text="{Binding}" />
+                                Text="{Binding}"
+                                TextWrapping="WrapWithOverflow" />
                         </StackPanel>
                     </DataTemplate>
                 </local:FileDropArea.FileTemplate>
@@ -164,6 +166,13 @@
                 Value="{Binding UpScaleBy, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:CustomTextBox Header="File name prefix" Text="{Binding FileNamePrefix, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button
+                Width="250"
+                HorizontalAlignment="Left"
+                Command="{Binding SendRequestAsyncCommand}">
+                <TextBlock Text="Generate" />
+            </Button>
         </StackPanel>
 
     </Grid>

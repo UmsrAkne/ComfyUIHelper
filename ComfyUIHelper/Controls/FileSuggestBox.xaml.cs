@@ -14,7 +14,7 @@ namespace ComfyUIHelper.Controls
                 nameof(SelectedPath),
                 typeof(string),
                 typeof(FileSuggestBox),
-                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+                new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedPathChanged));
 
         public readonly static DependencyProperty SourceDirectoryPathProperty =
             DependencyProperty.Register(
@@ -69,6 +69,26 @@ namespace ComfyUIHelper.Controls
                 // ※ViewModel側にソースディレクトリを更新するメソッドやプロパティがある前提
                 control.vm.SourceDirectoryPath = newPath;
                 Logger.Log($"SourceDirectoryPath changed: {newPath}");
+            }
+        }
+
+        private static void OnSelectedPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is FileSuggestBox control && control.vm != null)
+            {
+                var newValue = e.NewValue as string;
+
+                // 循環参照（無限ループ）を防ぐため、値が本当に違う時だけセット
+                if (control.vm.SearchText != newValue)
+                {
+                    // VM の SearchText を更新
+                    // これにより、TextBox の表示が Json からの値に切り替わります
+                    control.vm.SearchText = newValue;
+
+                    // ついでに SelectedFile も更新して、内部状態を整合させる
+                    // リストアイテムの中に項目が存在しなくても SearchText への入力は可能です
+                    control.vm.SelectedFile = newValue;
+                }
             }
         }
     }
