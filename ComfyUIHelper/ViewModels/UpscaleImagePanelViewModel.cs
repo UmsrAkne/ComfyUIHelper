@@ -15,7 +15,6 @@ namespace ComfyUIHelper.ViewModels
     public class UpscaleImagePanelViewModel : BindableBase, IWorkflowPanel
     {
         private string loadCheckPoint = string.Empty;
-        private string loadImage = string.Empty;
         private string negativePrompt = "bad quality, low detail,";
         private string positivePrompt = "best quality, extremely detailed";
         private string loadUpScaleModel = string.Empty;
@@ -30,6 +29,7 @@ namespace ComfyUIHelper.ViewModels
         private double denoise = 0.6;
         private string currentWorkflowPath = string.Empty;
         private AsyncRelayCommand sendRequestCommand;
+        private string currentImagePath = string.Empty;
 
         public AsyncRelayCommand SendRequestAsyncCommand =>
             sendRequestCommand ??= new AsyncRelayCommand(async () =>
@@ -43,7 +43,11 @@ namespace ComfyUIHelper.ViewModels
         public string LoadCheckPoint { get => loadCheckPoint; set => SetProperty(ref loadCheckPoint, value); }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadImage))]
-        public string LoadImage { get => loadImage; set => SetProperty(ref loadImage, value); }
+        public string CurrentImagePath
+        {
+            get => currentImagePath;
+            set => SetProperty(ref currentImagePath, value);
+        }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.NegativePrompt))]
         public string NegativePrompt { get => negativePrompt; set => SetProperty(ref negativePrompt, value); }
@@ -100,8 +104,6 @@ namespace ComfyUIHelper.ViewModels
                 }
             }
         }
-
-        public string CurrentImagePath { get; set; } = string.Empty;
 
         public string ModelDirectoryPath { get; set; } = PathHelper.GetModelDirectoryPath();
 
