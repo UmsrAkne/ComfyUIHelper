@@ -126,7 +126,7 @@
                             <Image
                                 MaxWidth="400"
                                 MaxHeight="300"
-                                Source="{Binding}" />
+                                Source="{Binding Converter={StaticResource ImagePathToBitmapSourceConverter}}" />
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 FontSize="{StaticResource CommonFontSize}"
