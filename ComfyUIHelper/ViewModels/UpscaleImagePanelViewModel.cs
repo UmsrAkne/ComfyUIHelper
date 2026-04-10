@@ -1,5 +1,7 @@
+using ComfyUIHelper.Core;
 using ComfyUIHelper.Models;
 using ComfyUIHelper.Utils;
+using CommunityToolkit.Mvvm.Input;
 using Prism.Mvvm;
 
 namespace ComfyUIHelper.ViewModels
@@ -22,6 +24,14 @@ namespace ComfyUIHelper.ViewModels
         private double upScaleBy = 1.0;
         private double denoise = 0.6;
         private string currentWorkflowPath = string.Empty;
+        private AsyncRelayCommand sendRequestCommand;
+
+        public AsyncRelayCommand SendRequestAsyncCommand =>
+            sendRequestCommand ??= new AsyncRelayCommand(async () =>
+            {
+                var workflow = ComfyUiClient.LoadPromptJson(CurrentWorkflowPath);
+                await ComfyUiClient.ComfyUiApiPrompt(workflow);
+            });
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadCheckPoint))]
         public string LoadCheckPoint { get => loadCheckPoint; set => SetProperty(ref loadCheckPoint, value); }

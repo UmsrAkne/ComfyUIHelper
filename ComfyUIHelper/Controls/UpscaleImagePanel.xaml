@@ -164,6 +164,13 @@
                 Value="{Binding UpScaleBy, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:CustomTextBox Header="File name prefix" Text="{Binding FileNamePrefix, UpdateSourceTrigger=PropertyChanged}" />
+
+            <Button
+                Width="250"
+                HorizontalAlignment="Left"
+                Command="{Binding SendRequestAsyncCommand}">
+                <TextBlock Text="Generate" />
+            </Button>
         </StackPanel>
 
     </Grid>
