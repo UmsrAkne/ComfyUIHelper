@@ -86,7 +86,19 @@ namespace ComfyUIHelper.ViewModels
         public string CurrentWorkflowPath
         {
             get => currentWorkflowPath;
-            set => SetProperty(ref currentWorkflowPath, value);
+            set
+            {
+                if (SetProperty(ref currentWorkflowPath, value))
+                {
+                    if (string.IsNullOrWhiteSpace(value))
+                    {
+                        return;
+                    }
+
+                    var workflow = ComfyUiClient.LoadPromptJson(value);
+                    LoadValuesFromWorkflow(workflow);
+                }
+            }
         }
 
         public string CurrentImagePath { get; set; } = string.Empty;
@@ -151,6 +163,80 @@ namespace ComfyUIHelper.ViewModels
                 catch (Exception ex)
                 {
                     Logger.Log($"Failed to update node {parameter.NodeTitle}: {ex.Message}");
+                }
+            }
+        }
+
+        private void LoadValuesFromWorkflow(JsonNode workflow)
+        {
+            var properties = GetType().GetProperties();
+            var workflowObject = workflow.AsObject();
+
+            foreach (var prop in properties)
+            {
+                // 1. 属性の取得
+                var attribute = prop.GetCustomAttributes(typeof(ComfyUiSchemaAttribute), true)
+                    .FirstOrDefault() as ComfyUiSchemaAttribute;
+
+                if (attribute == null)
+                {
+                    continue;
+                }
+
+                // 2. スキーマ情報の取得
+                var fieldInfo =
+                    typeof(UpscaleImageSchema).GetField(attribute.FieldName, BindingFlags.Public | BindingFlags.Static);
+
+                if (fieldInfo?.GetValue(null) is not ComfyUiParameter parameter)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    // 3. タイトルから実際のノードIDを探す
+                    var actualNodeId = workflowObject
+                        .FirstOrDefault(node => node.Value?["_meta"]?["title"]?.ToString() == parameter.NodeTitle)
+                        .Key;
+
+                    if (actualNodeId == null)
+                    {
+                        continue;
+                    }
+
+                    // 4. JSONから値を取得
+                    var jsonValue = workflow[actualNodeId] !["inputs"]?[parameter.InputKey];
+                    if (jsonValue == null)
+                    {
+                        continue;
+                    }
+
+                    // 5. プロパティの型に合わせて変換してセット
+                    object convertedValue = null;
+                    var targetType = prop.PropertyType;
+
+                    if (targetType == typeof(string))
+                    {
+                        convertedValue = jsonValue.ToString();
+                    }
+                    else if (targetType == typeof(int))
+                    {
+                        convertedValue = (int)jsonValue;
+                    }
+                    else if (targetType == typeof(double))
+                    {
+                        convertedValue = (double)jsonValue;
+                    }
+
+                    if (convertedValue != null)
+                    {
+                        prop.SetValue(this, convertedValue);
+                        Debug.WriteLine($"[Load] {prop.Name} <= {convertedValue}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Failed to load value for {prop.Name}: {ex.Message}");
                 }
             }
         }
