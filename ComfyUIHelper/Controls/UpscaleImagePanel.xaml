@@ -128,10 +128,12 @@
                                 MaxHeight="300"
                                 Source="{Binding Converter={StaticResource ImagePathToBitmapSourceConverter}}" />
                             <TextBlock
+                                MaxWidth="350"
                                 HorizontalAlignment="Center"
                                 FontSize="{StaticResource CommonFontSize}"
                                 Foreground="{StaticResource CommonForegroundBrush}"
-                                Text="{Binding}" />
+                                Text="{Binding}"
+                                TextWrapping="WrapWithOverflow" />
                         </StackPanel>
                     </DataTemplate>
                 </local:FileDropArea.FileTemplate>
