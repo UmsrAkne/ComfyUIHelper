@@ -12,8 +12,13 @@ namespace ComfyUIHelper.Models
 
         // Lora 系（名前と強度、どちらを操作するかでキーが変わります。下記は名前の変更例）
         public readonly static ComfyUiParameter LoadLora1 = new ("Api_LoadLora1", "lora_name", typeof(string));
+        public readonly static ComfyUiParameter LoadLora1Strength = new ("Api_LoadLora1", "lora_name", typeof(int));
+
         public readonly static ComfyUiParameter LoadLora2 = new ("Api_LoadLora2", "lora_name", typeof(string));
+        public readonly static ComfyUiParameter LoadLora2Strength = new ("Api_LoadLora2", "lora_name", typeof(int));
+
         public readonly static ComfyUiParameter LoadLora3 = new ("Api_LoadLora3", "lora_name", typeof(string));
+        public readonly static ComfyUiParameter LoadLora3Strength = new ("Api_LoadLora3", "lora_name", typeof(int));
 
         // Primitive 系（JSON上で class_type が Primitive... になっているもの。キーは一律 "value"）
         public readonly static ComfyUiParameter Seed = new ("Api_Seed", "value", typeof(int));

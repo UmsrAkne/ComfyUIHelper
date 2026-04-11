@@ -1,0 +1,56 @@
+<UserControl
+    x:Class="ComfyUIHelper.Controls.DoubleNumericInput"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+        <TextBlock
+            Margin="10,0"
+            VerticalAlignment="Center"
+            FontSize="{StaticResource CommonFontSize}"
+            Foreground="{StaticResource CommonForegroundBrush}"
+            Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Label}" />
+
+        <TextBox
+            x:Name="ValueTextBox"
+            Width="60"
+            FontSize="{StaticResource CommonFontSize}"
+            Foreground="{StaticResource CommonForegroundBrush}"
+            PreviewKeyDown="ValueTextBox_PreviewKeyDown"
+            Text="{Binding StringFormat=N2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Value}"
+            TextAlignment="Center" />
+
+        <Button
+            Width="40"
+            Padding="0"
+            Background="{StaticResource ButtonBackgroundBrush}"
+            Click="UpButton_Click"
+            Style="{StaticResource MaterialDesignFlatButton}">
+            <Button.Content>
+                <TextBlock
+                    FontSize="{StaticResource CommonFontSize}"
+                    Foreground="{StaticResource CommonForegroundBrush}"
+                    Text="+" />
+            </Button.Content>
+        </Button>
+        <Border Width="5" />
+        <Button
+            Width="40"
+            Padding="0"
+            Background="{StaticResource ButtonBackgroundBrush}"
+            Click="DownButton_Click"
+            Style="{StaticResource MaterialDesignFlatButton}">
+            <Button.Content>
+                <TextBlock
+                    FontSize="{StaticResource CommonFontSize}"
+                    Foreground="{StaticResource CommonForegroundBrush}"
+                    Text="-" />
+            </Button.Content>
+        </Button>
+
+    </StackPanel>
+</UserControl>
