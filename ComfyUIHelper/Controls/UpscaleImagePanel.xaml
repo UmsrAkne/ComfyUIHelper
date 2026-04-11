@@ -63,25 +63,46 @@
                     SourceDirectoryPath="{Binding UpscalerDirectoryPath}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
-                <!-- lora1 -->
-                <local:FileSuggestBox
-                    Label="Lora1: "
-                    SelectedPath="{Binding LoadLora1}"
-                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+            <StackPanel Margin="0,10" Orientation="Horizontal">
+                <StackPanel>
+                    <!-- lora1 -->
+                    <local:FileSuggestBox
+                        Label="Lora1: "
+                        SelectedPath="{Binding LoadLora1}"
+                        SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
-                <!-- lora2 -->
-                <local:FileSuggestBox
-                    Margin="35,0"
-                    Label="Lora2: "
-                    SelectedPath="{Binding LoadLora2}"
-                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+                    <local:LabeledNumericInput
+                        Label="Strength: "
+                        Steps="1"
+                        Value="{Binding Lora1Strength}" />
+                </StackPanel>
 
-                <!-- lora3 -->
-                <local:FileSuggestBox
-                    Label="Lora3: "
-                    SelectedPath="{Binding LoadLora3}"
-                    SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+                <StackPanel>
+                    <!-- lora2 -->
+                    <local:FileSuggestBox
+                        Margin="35,0"
+                        Label="Lora2: "
+                        SelectedPath="{Binding LoadLora2}"
+                        SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+
+                    <local:LabeledNumericInput
+                        Label="Strength: "
+                        Steps="1"
+                        Value="{Binding Lora2Strength}" />
+                </StackPanel>
+
+                <StackPanel>
+                    <!-- lora3 -->
+                    <local:FileSuggestBox
+                        Label="Lora3: "
+                        SelectedPath="{Binding LoadLora3}"
+                        SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+
+                    <local:LabeledNumericInput
+                        Label="Strength: "
+                        Steps="1"
+                        Value="{Binding Lora3Strength}" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 
