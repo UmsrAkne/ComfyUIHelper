@@ -30,9 +30,9 @@ namespace ComfyUIHelper.ViewModels
         private string currentWorkflowPath = string.Empty;
         private AsyncRelayCommand sendRequestCommand;
         private string currentImagePath = string.Empty;
-        private int lora1Strength;
-        private int lora2Strength;
-        private int lora3Strength;
+        private double lora1Strength;
+        private double lora2Strength;
+        private double lora3Strength;
 
         public AsyncRelayCommand SendRequestAsyncCommand =>
             sendRequestCommand ??= new AsyncRelayCommand(async () =>
@@ -68,19 +68,19 @@ namespace ComfyUIHelper.ViewModels
         public string LoadLora1 { get => loadLora1; set => SetProperty(ref loadLora1, value); }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadLora1Strength))]
-        public int Lora1Strength { get => lora1Strength; set => SetProperty(ref lora1Strength, value); }
+        public double Lora1Strength { get => lora1Strength; set => SetProperty(ref lora1Strength, value); }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadLora2))]
         public string LoadLora2 { get => loadLora2; set => SetProperty(ref loadLora2, value); }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadLora2Strength))]
-        public int Lora2Strength { get => lora2Strength; set => SetProperty(ref lora2Strength, value); }
+        public double Lora2Strength { get => lora2Strength; set => SetProperty(ref lora2Strength, value); }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadLora3))]
         public string LoadLora3 { get => loadLora3; set => SetProperty(ref loadLora3, value); }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.LoadLora3Strength))]
-        public int Lora3Strength { get => lora3Strength; set => SetProperty(ref lora3Strength, value); }
+        public double Lora3Strength { get => lora3Strength; set => SetProperty(ref lora3Strength, value); }
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.Seed))]
         public int Seed { get => seed; set => SetProperty(ref seed, value); }

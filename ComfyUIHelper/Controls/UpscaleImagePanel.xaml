@@ -71,9 +71,9 @@
                         SelectedPath="{Binding LoadLora1}"
                         SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
-                    <local:LabeledNumericInput
+                    <local:DoubleNumericInput
                         Label="Strength: "
-                        Steps="1"
+                        Step="0.01"
                         Value="{Binding Lora1Strength}" />
                 </StackPanel>
 
@@ -85,9 +85,9 @@
                         SelectedPath="{Binding LoadLora2}"
                         SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
-                    <local:LabeledNumericInput
+                    <local:DoubleNumericInput
                         Label="Strength: "
-                        Steps="1"
+                        Step="0.01"
                         Value="{Binding Lora2Strength}" />
                 </StackPanel>
 
@@ -98,9 +98,9 @@
                         SelectedPath="{Binding LoadLora3}"
                         SourceDirectoryPath="{Binding LoraDirectoryPath}" />
 
-                    <local:LabeledNumericInput
+                    <local:DoubleNumericInput
                         Label="Strength: "
-                        Steps="1"
+                        Step="0.01"
                         Value="{Binding Lora3Strength}" />
                 </StackPanel>
             </StackPanel>
@@ -162,10 +162,12 @@
         </Grid>
 
         <StackPanel Grid.Row="2" Grid.Column="0">
-            <local:LabeledNumericInput
+            <local:DoubleNumericInput
                 VerticalAlignment="Top"
                 Label="Denoise"
-                Steps="1"
+                MaxValue="3.0"
+                MinValue="0"
+                Step="0.01"
                 Value="{Binding Denoise, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:LabeledNumericInput
@@ -180,10 +182,12 @@
                 Steps="1"
                 Value="{Binding IssueNumber, UpdateSourceTrigger=PropertyChanged}" />
 
-            <local:LabeledNumericInput
+            <local:DoubleNumericInput
                 VerticalAlignment="Top"
                 Label="UpScaleBy"
-                Steps="1"
+                MaxValue="4.0"
+                MinValue="1.0"
+                Step="0.05"
                 Value="{Binding UpScaleBy, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:CustomTextBox Header="File name prefix" Text="{Binding FileNamePrefix, UpdateSourceTrigger=PropertyChanged}" />
