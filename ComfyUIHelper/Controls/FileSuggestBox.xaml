@@ -20,7 +20,10 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0" VerticalAlignment="Center">
+            <Border
+                Grid.Column="0"
+                Margin="3,0"
+                VerticalAlignment="Center">
                 <TextBlock
                     VerticalAlignment="Center"
                     FontSize="{StaticResource CommonFontSize}"
@@ -31,8 +34,6 @@
             <TextBox
                 x:Name="SearchBox"
                 Grid.Column="1"
-                Width="200"
-                Height="30"
                 Background="{StaticResource DarkBackgroundBrush}"
                 FontSize="{StaticResource CommonFontSize}"
                 Foreground="{StaticResource CommonForegroundBrush}"
