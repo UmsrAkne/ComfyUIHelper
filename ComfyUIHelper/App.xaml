@@ -22,7 +22,7 @@
             <SolidColorBrush x:Key="CommonForegroundBrush" Color="#DDDDDD" />
             <SolidColorBrush x:Key="BorderBrush" Color="#999999" />
 
-            <SolidColorBrush x:Key="SpeechBubbleBackgroundBrush" Color="#48486A" />
+            <SolidColorBrush x:Key="ControlBaseBackgroundBrush" Color="#48486A" />
 
             <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#488888" />
 
