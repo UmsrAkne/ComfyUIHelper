@@ -24,33 +24,33 @@
             Text="{Binding StringFormat=N2, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Value}"
             TextAlignment="Center" />
 
-        <Button
+        <RepeatButton
             Width="40"
             Padding="0"
             Background="{StaticResource ButtonBackgroundBrush}"
             Click="UpButton_Click"
             Style="{StaticResource MaterialDesignFlatButton}">
-            <Button.Content>
+            <RepeatButton.Content>
                 <TextBlock
                     FontSize="{StaticResource CommonFontSize}"
                     Foreground="{StaticResource CommonForegroundBrush}"
                     Text="+" />
-            </Button.Content>
-        </Button>
+            </RepeatButton.Content>
+        </RepeatButton>
         <Border Width="5" />
-        <Button
+        <RepeatButton
             Width="40"
             Padding="0"
             Background="{StaticResource ButtonBackgroundBrush}"
             Click="DownButton_Click"
             Style="{StaticResource MaterialDesignFlatButton}">
-            <Button.Content>
+            <RepeatButton.Content>
                 <TextBlock
                     FontSize="{StaticResource CommonFontSize}"
                     Foreground="{StaticResource CommonForegroundBrush}"
                     Text="-" />
-            </Button.Content>
-        </Button>
+            </RepeatButton.Content>
+        </RepeatButton>
 
     </StackPanel>
 </UserControl>
