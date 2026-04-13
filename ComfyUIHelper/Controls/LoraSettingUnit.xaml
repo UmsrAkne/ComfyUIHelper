@@ -10,6 +10,17 @@
     d:DesignWidth="300"
     mc:Ignorable="d">
     <Grid>
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <!-- LoRA is ignored if the strength is 0. -->
+                    <DataTrigger Binding="{Binding Value, ElementName=Root}" Value="0.00">
+                        <Setter Property="Opacity" Value="0.4" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+
         <Border Background="{StaticResource ControlBaseBackgroundBrush}" CornerRadius="{StaticResource CommonCornerRadius}">
             <StackPanel>
                 <local:FileSuggestBox
