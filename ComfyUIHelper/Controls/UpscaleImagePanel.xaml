@@ -139,6 +139,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="0">
             <local:DoubleNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="Denoise"
                 MaxValue="3.0"
@@ -147,18 +148,22 @@
                 Value="{Binding Denoise, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:LabeledNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="Seed"
                 Steps="1"
                 Value="{Binding Seed, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:LabeledNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="Issue Number"
+                MinValue="-1"
                 Steps="1"
                 Value="{Binding IssueNumber, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:DoubleNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="UpScaleBy"
                 MaxValue="4.0"

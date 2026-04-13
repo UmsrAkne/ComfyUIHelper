@@ -8,22 +8,58 @@
     xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-        <TextBlock
-            Margin="10,0"
-            VerticalAlignment="Center"
-            FontSize="{StaticResource CommonFontSize}"
-            Foreground="{StaticResource CommonForegroundBrush}"
-            Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Label}" />
+    <Border
+        Padding="5,0,0,0"
+        Background="{StaticResource ControlBaseBackgroundBrush}"
+        CornerRadius="{StaticResource CommonCornerRadius}">
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock
+                Margin="5,0"
+                VerticalAlignment="Center"
+                FontSize="{StaticResource CommonFontSize}"
+                Foreground="{StaticResource CommonForegroundBrush}"
+                Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Label}" />
 
-        <md:NumericUpDown
-            FontSize="{StaticResource CommonFontSize}"
-            Foreground="{StaticResource CommonForegroundBrush}"
-            ValueStep="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Steps}"
-            Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Value}">
-            <md:NumericUpDown.LayoutTransform>
-                <ScaleTransform ScaleX="1.25" ScaleY="1.25" />
-            </md:NumericUpDown.LayoutTransform>
-        </md:NumericUpDown>
-    </StackPanel>
+            <TextBox
+                x:Name="ValueTextBox"
+                Width="120"
+                Margin="5"
+                FontSize="{StaticResource CommonFontSize}"
+                Foreground="{StaticResource CommonForegroundBrush}"
+                PreviewKeyDown="ValueTextBox_PreviewKeyDown"
+                Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Value}"
+                TextAlignment="Center" />
+
+            <RepeatButton
+                Width="40"
+                Height="25"
+                Padding="0"
+                Background="{StaticResource ButtonBackgroundBrush}"
+                Click="UpButton_Click"
+                Style="{StaticResource MaterialDesignFlatDarkBgButton}">
+                <RepeatButton.Content>
+                    <md:PackIcon
+                        FontSize="{StaticResource CommonFontSize}"
+                        Foreground="{StaticResource CommonForegroundBrush}"
+                        Kind="Plus" />
+                </RepeatButton.Content>
+            </RepeatButton>
+            <Border Width="5" />
+            <RepeatButton
+                Width="40"
+                Height="25"
+                Padding="0"
+                Background="{StaticResource ButtonBackgroundBrush}"
+                Click="DownButton_Click"
+                Style="{StaticResource MaterialDesignFlatDarkBgButton}">
+                <RepeatButton.Content>
+                    <md:PackIcon
+                        FontSize="{StaticResource CommonFontSize}"
+                        Foreground="{StaticResource CommonForegroundBrush}"
+                        Kind="Minus" />
+                </RepeatButton.Content>
+            </RepeatButton>
+
+        </StackPanel>
+    </Border>
 </UserControl>
