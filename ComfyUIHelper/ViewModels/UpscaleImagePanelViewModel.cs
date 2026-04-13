@@ -129,6 +129,8 @@ namespace ComfyUIHelper.ViewModels
         {
             var properties = GetType().GetProperties();
             var workflowObject = workflow.AsObject();
+            var seedIsRandom = Seed == -1;
+            Seed = seedIsRandom ? Math.Abs(new Random().Next()) : Seed;
 
             foreach (var prop in properties)
             {
@@ -179,6 +181,8 @@ namespace ComfyUIHelper.ViewModels
                     Logger.Log($"Failed to update node {parameter.NodeTitle}: {ex.Message}");
                 }
             }
+
+            Seed = seedIsRandom ? -1 : Seed;
         }
 
         private void LoadValuesFromWorkflow(JsonNode workflow)
