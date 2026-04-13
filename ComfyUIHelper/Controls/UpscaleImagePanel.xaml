@@ -64,55 +64,21 @@
             </UniformGrid>
 
             <UniformGrid Margin="0,10" Columns="3">
-                <Border Background="{StaticResource ControlBaseBackgroundBrush}" CornerRadius="{StaticResource CommonCornerRadius}">
-                    <StackPanel>
-                        <!-- lora1 -->
-                        <local:FileSuggestBox
-                            Label="Lora1: "
-                            SelectedPath="{Binding LoadLora1}"
-                            SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+                <local:LoraSettingUnit
+                    SelectedPath="{Binding LoadLora1}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}"
+                    Value="{Binding Lora1Strength}" />
 
-                        <local:DoubleNumericInput
-                            Margin="0,5"
-                            Label="Strength: "
-                            Step="0.01"
-                            Value="{Binding Lora1Strength}" />
-                    </StackPanel>
-                </Border>
-                <Border
+                <local:LoraSettingUnit
                     Margin="10,0"
-                    Background="{StaticResource ControlBaseBackgroundBrush}"
-                    CornerRadius="{StaticResource CommonCornerRadius}">
-                    <StackPanel>
-                        <!-- lora2 -->
-                        <local:FileSuggestBox
-                            Label="Lora2: "
-                            SelectedPath="{Binding LoadLora2}"
-                            SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+                    SelectedPath="{Binding LoadLora2}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}"
+                    Value="{Binding Lora2Strength}" />
 
-                        <local:DoubleNumericInput
-                            Margin="0,5"
-                            Label="Strength: "
-                            Step="0.01"
-                            Value="{Binding Lora2Strength}" />
-                    </StackPanel>
-                </Border>
-
-                <Border Background="{StaticResource ControlBaseBackgroundBrush}" CornerRadius="{StaticResource CommonCornerRadius}">
-                    <StackPanel>
-                        <!-- lora3 -->
-                        <local:FileSuggestBox
-                            Label="Lora3: "
-                            SelectedPath="{Binding LoadLora3}"
-                            SourceDirectoryPath="{Binding LoraDirectoryPath}" />
-
-                        <local:DoubleNumericInput
-                            Margin="0,5"
-                            Label="Strength: "
-                            Step="0.01"
-                            Value="{Binding Lora3Strength}" />
-                    </StackPanel>
-                </Border>
+                <local:LoraSettingUnit
+                    SelectedPath="{Binding LoadLora3}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}"
+                    Value="{Binding Lora3Strength}" />
             </UniformGrid>
         </StackPanel>
 
