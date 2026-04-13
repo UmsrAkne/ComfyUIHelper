@@ -7,6 +7,7 @@ using ComfyUIHelper.Core;
 using ComfyUIHelper.Models;
 using ComfyUIHelper.Utils;
 using CommunityToolkit.Mvvm.Input;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace ComfyUIHelper.ViewModels
@@ -124,6 +125,11 @@ namespace ComfyUIHelper.ViewModels
         public string UpscalerDirectoryPath { get; set; } = PathHelper.GetUpscalerDirectoryPath();
 
         public string VaeDirectoryPath { get; set; } = PathHelper.GetVaeDirectoryPath();
+
+        public DelegateCommand SetSeedToRandomCommand => new (() =>
+        {
+            Seed = -1; // A random seed is used for generation when set to -1.
+        });
 
         private void UpdateWorkflowValues(JsonNode workflow)
         {

@@ -20,7 +20,7 @@ namespace ComfyUIHelper.Controls
                 nameof(Value),
                 typeof(int),
                 typeof(LabeledNumericInput),
-                new PropertyMetadata(0));
+                new FrameworkPropertyMetadata(0, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public readonly static DependencyProperty StepsProperty =
             DependencyProperty.Register(
