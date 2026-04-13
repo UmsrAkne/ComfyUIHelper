@@ -10,60 +10,66 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Grid x:Name="InternalRoot">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Border Grid.Column="0" VerticalAlignment="Center">
-            <TextBlock
-                VerticalAlignment="Center"
-                FontSize="{StaticResource CommonFontSize}"
-                Foreground="{StaticResource CommonForegroundBrush}"
-                Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Label}" />
-        </Border>
-
-        <TextBox
-            x:Name="SearchBox"
-            Grid.Column="1"
-            Width="200"
-            Height="30"
-            Background="{StaticResource DarkBackgroundBrush}"
-            FontSize="{StaticResource CommonFontSize}"
-            Foreground="{StaticResource CommonForegroundBrush}"
-            Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=200}" />
-
-        <Popup
-            AllowsTransparency="True"
-            IsOpen="{Binding IsSuggestionOpen}"
-            Placement="Bottom"
-            PlacementTarget="{Binding ElementName=SearchBox}"
-            PopupAnimation="Fade"
-            StaysOpen="False">
+    <Border
+        Padding="10,4,4,4"
+        Background="{StaticResource ControlBaseBackgroundBrush}"
+        CornerRadius="{StaticResource CommonCornerRadius}">
+        <Grid x:Name="InternalRoot">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
             <Border
-                Width="{Binding ElementName=SearchBox, Path=ActualWidth}"
-                MaxHeight="200"
-                Background="{StaticResource MiddleBackgroundBrush}"
-                BorderThickness="1"
-                CornerRadius="{StaticResource CommonCornerRadius}">
-
-                <ListBox
-                    Background="Transparent"
-                    BorderThickness="0"
-                    ItemsSource="{Binding Suggestions}"
-                    SelectedItem="{Binding SelectedFile}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock
-                                Padding="5,0"
-                                Foreground="{StaticResource CommonForegroundBrush}"
-                                Text="{Binding}" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                Grid.Column="0"
+                Margin="3,0"
+                VerticalAlignment="Center">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="{StaticResource CommonFontSize}"
+                    Foreground="{StaticResource CommonForegroundBrush}"
+                    Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}, Path=Label}" />
             </Border>
-        </Popup>
-    </Grid>
+
+            <TextBox
+                x:Name="SearchBox"
+                Grid.Column="1"
+                Background="{StaticResource DarkBackgroundBrush}"
+                FontSize="{StaticResource CommonFontSize}"
+                Foreground="{StaticResource CommonForegroundBrush}"
+                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=200}" />
+
+            <Popup
+                AllowsTransparency="True"
+                IsOpen="{Binding IsSuggestionOpen}"
+                Placement="Bottom"
+                PlacementTarget="{Binding ElementName=SearchBox}"
+                PopupAnimation="Fade"
+                StaysOpen="False">
+
+                <Border
+                    Width="{Binding ElementName=SearchBox, Path=ActualWidth}"
+                    MaxHeight="200"
+                    Background="{StaticResource MiddleBackgroundBrush}"
+                    BorderThickness="1"
+                    CornerRadius="{StaticResource CommonCornerRadius}">
+
+                    <ListBox
+                        Background="Transparent"
+                        BorderThickness="0"
+                        ItemsSource="{Binding Suggestions}"
+                        SelectedItem="{Binding SelectedFile}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Padding="5,0"
+                                    Foreground="{StaticResource CommonForegroundBrush}"
+                                    Text="{Binding}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Border>
+            </Popup>
+        </Grid>
+    </Border>
 </UserControl>

@@ -42,7 +42,7 @@
                 </local:FileDropArea.FileTemplate>
             </local:FileDropArea>
 
-            <StackPanel Orientation="Horizontal">
+            <UniformGrid Columns="3">
                 <!-- Checkpoint -->
                 <local:FileSuggestBox
                     Label="Chkpt: "
@@ -51,7 +51,7 @@
 
                 <!-- vae -->
                 <local:FileSuggestBox
-                    Margin="35,0"
+                    Margin="10,0"
                     Label="Vae: "
                     SelectedPath="{Binding LoadVae}"
                     SourceDirectoryPath="{Binding VaeDirectoryPath}" />
@@ -61,49 +61,25 @@
                     Label="Upscaler: "
                     SelectedPath="{Binding LoadUpScaleModel}"
                     SourceDirectoryPath="{Binding UpscalerDirectoryPath}" />
-            </StackPanel>
+            </UniformGrid>
 
-            <StackPanel Margin="0,10" Orientation="Horizontal">
-                <StackPanel>
-                    <!-- lora1 -->
-                    <local:FileSuggestBox
-                        Label="Lora1: "
-                        SelectedPath="{Binding LoadLora1}"
-                        SourceDirectoryPath="{Binding LoraDirectoryPath}" />
+            <UniformGrid Margin="0,10" Columns="3">
+                <local:LoraSettingUnit
+                    SelectedPath="{Binding LoadLora1}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}"
+                    Value="{Binding Lora1Strength}" />
 
-                    <local:DoubleNumericInput
-                        Label="Strength: "
-                        Step="0.01"
-                        Value="{Binding Lora1Strength}" />
-                </StackPanel>
+                <local:LoraSettingUnit
+                    Margin="10,0"
+                    SelectedPath="{Binding LoadLora2}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}"
+                    Value="{Binding Lora2Strength}" />
 
-                <StackPanel>
-                    <!-- lora2 -->
-                    <local:FileSuggestBox
-                        Margin="35,0"
-                        Label="Lora2: "
-                        SelectedPath="{Binding LoadLora2}"
-                        SourceDirectoryPath="{Binding LoraDirectoryPath}" />
-
-                    <local:DoubleNumericInput
-                        Label="Strength: "
-                        Step="0.01"
-                        Value="{Binding Lora2Strength}" />
-                </StackPanel>
-
-                <StackPanel>
-                    <!-- lora3 -->
-                    <local:FileSuggestBox
-                        Label="Lora3: "
-                        SelectedPath="{Binding LoadLora3}"
-                        SourceDirectoryPath="{Binding LoraDirectoryPath}" />
-
-                    <local:DoubleNumericInput
-                        Label="Strength: "
-                        Step="0.01"
-                        Value="{Binding Lora3Strength}" />
-                </StackPanel>
-            </StackPanel>
+                <local:LoraSettingUnit
+                    SelectedPath="{Binding LoadLora3}"
+                    SourceDirectoryPath="{Binding LoraDirectoryPath}"
+                    Value="{Binding Lora3Strength}" />
+            </UniformGrid>
         </StackPanel>
 
         <Grid
@@ -163,6 +139,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="0">
             <local:DoubleNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="Denoise"
                 MaxValue="3.0"
@@ -171,18 +148,22 @@
                 Value="{Binding Denoise, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:LabeledNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="Seed"
                 Steps="1"
                 Value="{Binding Seed, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:LabeledNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="Issue Number"
+                MinValue="-1"
                 Steps="1"
                 Value="{Binding IssueNumber, UpdateSourceTrigger=PropertyChanged}" />
 
             <local:DoubleNumericInput
+                Margin="0,0,0,5"
                 VerticalAlignment="Top"
                 Label="UpScaleBy"
                 MaxValue="4.0"
