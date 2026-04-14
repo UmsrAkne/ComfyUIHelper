@@ -7,6 +7,7 @@ using ComfyUIHelper.Core;
 using ComfyUIHelper.Models;
 using ComfyUIHelper.Utils;
 using CommunityToolkit.Mvvm.Input;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace ComfyUIHelper.ViewModels
@@ -125,10 +126,17 @@ namespace ComfyUIHelper.ViewModels
 
         public string VaeDirectoryPath { get; set; } = PathHelper.GetVaeDirectoryPath();
 
+        public DelegateCommand SetSeedToRandomCommand => new (() =>
+        {
+            Seed = -1; // A random seed is used for generation when set to -1.
+        });
+
         private void UpdateWorkflowValues(JsonNode workflow)
         {
             var properties = GetType().GetProperties();
             var workflowObject = workflow.AsObject();
+            var seedIsRandom = Seed == -1;
+            Seed = seedIsRandom ? Math.Abs(new Random().Next()) : Seed;
 
             foreach (var prop in properties)
             {
@@ -179,6 +187,8 @@ namespace ComfyUIHelper.ViewModels
                     Logger.Log($"Failed to update node {parameter.NodeTitle}: {ex.Message}");
                 }
             }
+
+            Seed = seedIsRandom ? -1 : Seed;
         }
 
         private void LoadValuesFromWorkflow(JsonNode workflow)

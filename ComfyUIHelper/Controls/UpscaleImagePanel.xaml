@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ComfyUIHelper.Controls"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:viewModels="clr-namespace:ComfyUIHelper.ViewModels"
@@ -147,12 +148,41 @@
                 Step="0.01"
                 Value="{Binding Denoise, UpdateSourceTrigger=PropertyChanged}" />
 
-            <local:LabeledNumericInput
+            <Border
                 Margin="0,0,0,5"
-                VerticalAlignment="Top"
-                Label="Seed"
-                Steps="1"
-                Value="{Binding Seed, UpdateSourceTrigger=PropertyChanged}" />
+                Background="{StaticResource ControlBaseBackgroundBrush}"
+                CornerRadius="{StaticResource CommonCornerRadius}">
+
+                <StackPanel Orientation="Horizontal">
+                    <local:LabeledNumericInput
+                        VerticalAlignment="Top"
+                        Label="Seed"
+                        Steps="1"
+                        Value="{Binding Seed, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <Button
+                        Height="25"
+                        Margin="10,0"
+                        VerticalContentAlignment="Center"
+                        Background="{StaticResource ButtonBackgroundBrush}"
+                        BorderThickness="1"
+                        Command="{Binding SetSeedToRandomCommand}"
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource CommonForegroundBrush}"
+                                    Text="Set Random" />
+                                <materialDesign:PackIcon
+                                    Margin="5,0"
+                                    Foreground="{StaticResource CommonForegroundBrush}"
+                                    Kind="Dice4" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Border>
 
             <local:LabeledNumericInput
                 Margin="0,0,0,5"
@@ -171,7 +201,10 @@
                 Step="0.05"
                 Value="{Binding UpScaleBy, UpdateSourceTrigger=PropertyChanged}" />
 
-            <local:CustomTextBox Header="File name prefix" Text="{Binding FileNamePrefix, UpdateSourceTrigger=PropertyChanged}" />
+            <local:LabeledTextBox
+                Margin="0,0,0,5"
+                Label="File name prefix"
+                Text="{Binding FileNamePrefix, UpdateSourceTrigger=PropertyChanged}" />
 
             <Button
                 Width="250"
