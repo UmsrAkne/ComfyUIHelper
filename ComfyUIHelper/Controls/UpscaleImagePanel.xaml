@@ -148,6 +148,15 @@
                 Step="0.01"
                 Value="{Binding Denoise, UpdateSourceTrigger=PropertyChanged}" />
 
+            <local:LabeledNumericInput
+                Margin="0,0,0,5"
+                VerticalAlignment="Top"
+                Label="Steps"
+                MaxValue="30"
+                MinValue="1"
+                Steps="1"
+                Value="{Binding Steps, UpdateSourceTrigger=PropertyChanged}" />
+
             <Border
                 Margin="0,0,0,5"
                 Background="{StaticResource ControlBaseBackgroundBrush}"

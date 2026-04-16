@@ -34,6 +34,7 @@ namespace ComfyUIHelper.ViewModels
         private double lora1Strength;
         private double lora2Strength;
         private double lora3Strength;
+        private int steps = 16;
 
         public AsyncRelayCommand SendRequestAsyncCommand =>
             sendRequestCommand ??= new AsyncRelayCommand(async () =>
@@ -97,6 +98,9 @@ namespace ComfyUIHelper.ViewModels
 
         [ComfyUiSchema(nameof(UpscaleImageSchema.Denoise))]
         public double Denoise { get => denoise; set => SetProperty(ref denoise, value); }
+
+        [ComfyUiSchema(nameof(UpscaleImageSchema.Steps))]
+        public int Steps { get => steps; set => SetProperty(ref steps, value); }
 
         public string Header { get; set; } = "Upscale Image";
 

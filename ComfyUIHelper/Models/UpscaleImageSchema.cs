@@ -26,5 +26,6 @@ namespace ComfyUIHelper.Models
         public readonly static ComfyUiParameter FileNamePrefix = new ("Api_FileNamePrefix", "value", typeof(string));
         public readonly static ComfyUiParameter UpScaleBy = new ("Api_UpScaleBy", "value", typeof(double));
         public readonly static ComfyUiParameter Denoise = new ("Api_Denoise", "value", typeof(double));
+        public readonly static ComfyUiParameter Steps = new ("Api_Steps", "value", typeof(int));
     }
 }
