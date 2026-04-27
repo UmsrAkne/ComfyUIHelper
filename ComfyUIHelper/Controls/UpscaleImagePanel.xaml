@@ -46,6 +46,7 @@
             <UniformGrid Columns="3">
                 <!-- Checkpoint -->
                 <local:FileSuggestBox
+                    FilterExtensions="safetensors"
                     Label="Chkpt: "
                     SelectedPath="{Binding LoadCheckPoint}"
                     SourceDirectoryPath="{Binding ModelDirectoryPath}" />
@@ -53,6 +54,7 @@
                 <!-- vae -->
                 <local:FileSuggestBox
                     Margin="10,0"
+                    FilterExtensions="safetensors"
                     Label="Vae: "
                     SelectedPath="{Binding LoadVae}"
                     SourceDirectoryPath="{Binding VaeDirectoryPath}" />
@@ -147,6 +149,15 @@
                 MinValue="0"
                 Step="0.01"
                 Value="{Binding Denoise, UpdateSourceTrigger=PropertyChanged}" />
+
+            <local:LabeledNumericInput
+                Margin="0,0,0,5"
+                VerticalAlignment="Top"
+                Label="Steps"
+                MaxValue="30"
+                MinValue="1"
+                Steps="1"
+                Value="{Binding Steps, UpdateSourceTrigger=PropertyChanged}" />
 
             <Border
                 Margin="0,0,0,5"
