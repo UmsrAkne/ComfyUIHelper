@@ -24,6 +24,7 @@
         <Border Background="{StaticResource ControlBaseBackgroundBrush}" CornerRadius="{StaticResource CommonCornerRadius}">
             <StackPanel>
                 <local:FileSuggestBox
+                    FilterExtensions="safetensors"
                     Label="Lora: "
                     SelectedPath="{Binding SelectedPath, ElementName=Root}"
                     SourceDirectoryPath="{Binding SourceDirectoryPath, ElementName=Root}" />

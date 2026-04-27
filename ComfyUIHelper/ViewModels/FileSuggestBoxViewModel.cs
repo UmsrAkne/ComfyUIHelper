@@ -14,8 +14,8 @@ namespace ComfyUIHelper.ViewModels
         private bool isSuggestionOpen;
         private ObservableCollection<string> suggestions = new ();
         private string selectedFile;
-        private readonly string sourceDirectoryPath;
-        private string sourceDirectoryPath1;
+        private string sourceDirectoryPath;
+        private string filterExtensions;
 
         public FileSuggestBoxViewModel(string sourceDirectoryPath)
         {
@@ -66,8 +66,14 @@ namespace ComfyUIHelper.ViewModels
 
         public string SourceDirectoryPath
         {
-            get => sourceDirectoryPath1;
-            set => SetProperty(ref sourceDirectoryPath1, value);
+            get => sourceDirectoryPath;
+            set => SetProperty(ref sourceDirectoryPath, value);
+        }
+
+        public string FilterExtensions
+        {
+            get => filterExtensions;
+            set => SetProperty(ref filterExtensions, value);
         }
 
         private void UpdateSuggestions(string value)
@@ -82,12 +88,25 @@ namespace ComfyUIHelper.ViewModels
 
             try
             {
+                // 拡張子フィルターの準備
+                var extensions = (FilterExtensions ?? string.Empty)
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                    .Select(e => "." + e.ToLowerInvariant())
+                    .ToList();
+
                 // ディレクトリ内を検索
-                var filteredFiles = Directory.EnumerateFiles(SourceDirectoryPath, $"*{value}*", SearchOption.TopDirectoryOnly)
+                var filteredFiles = Directory.EnumerateFiles(SourceDirectoryPath, $"*{value}*", SearchOption.TopDirectoryOnly);
+
+                if (extensions.Any())
+                {
+                    filteredFiles = filteredFiles.Where(file => extensions.Contains(Path.GetExtension(file).ToLowerInvariant()));
+                }
+
+                var result = filteredFiles
                     .Select(Path.GetFileName)
                     .Take(10); // 出すぎると邪魔なので上位10件くらいに絞る
 
-                foreach (var file in filteredFiles)
+                foreach (var file in result)
                 {
                     Suggestions.Add(file);
                 }

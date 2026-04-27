@@ -30,6 +30,13 @@ namespace ComfyUIHelper.Controls
                 typeof(FileSuggestBox),
                 new PropertyMetadata(string.Empty));
 
+        public readonly static DependencyProperty FilterExtensionsProperty =
+            DependencyProperty.Register(
+                nameof(FilterExtensions),
+                typeof(string),
+                typeof(FileSuggestBox),
+                new PropertyMetadata(string.Empty, OnFilterExtensionsChanged));
+
         public FileSuggestBox()
         {
             InitializeComponent();
@@ -61,14 +68,35 @@ namespace ComfyUIHelper.Controls
             set => SetValue(SourceDirectoryPathProperty, value);
         }
 
+        /// <summary>
+        /// フィルタリングする拡張子を指定します。
+        /// </summary>
+        /// <remarks>
+        /// ドットを除いた拡張子を指定します。複数指定はカンマ区切りです（例: "safetensors,ckpt"）。
+        /// </remarks>
+        public string FilterExtensions
+        {
+            get => (string)GetValue(FilterExtensionsProperty);
+            set => SetValue(FilterExtensionsProperty, value);
+        }
+
         private static void OnSourceDirectoryPathChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is FileSuggestBox control && e.NewValue is string newPath)
             {
                 // 内部のViewModelにパスを伝える
-                // ※ViewModel側にソースディレクトリを更新するメソッドやプロパティがある前提
                 control.vm.SourceDirectoryPath = newPath;
                 Logger.Log($"SourceDirectoryPath changed: {newPath}");
+            }
+        }
+
+        private static void OnFilterExtensionsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is FileSuggestBox control && e.NewValue is string newExtensions)
+            {
+                // 内部のViewModelにフィルターを伝える
+                control.vm.FilterExtensions = newExtensions;
+                Logger.Log($"FilterExtensions changed: {newExtensions}");
             }
         }
 
