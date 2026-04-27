@@ -46,6 +46,7 @@
             <UniformGrid Columns="3">
                 <!-- Checkpoint -->
                 <local:FileSuggestBox
+                    FilterExtensions="safetensors"
                     Label="Chkpt: "
                     SelectedPath="{Binding LoadCheckPoint}"
                     SourceDirectoryPath="{Binding ModelDirectoryPath}" />
@@ -53,6 +54,7 @@
                 <!-- vae -->
                 <local:FileSuggestBox
                     Margin="10,0"
+                    FilterExtensions="safetensors"
                     Label="Vae: "
                     SelectedPath="{Binding LoadVae}"
                     SourceDirectoryPath="{Binding VaeDirectoryPath}" />
